@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { IKObserverOptions, IObserveChildValue, observerManager } from '@kricsleo/observer';
 
+export * from '@kricsleo/observer';
+
 /**
  * 注册检测容器
  * @param key observer key

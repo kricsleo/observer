@@ -2,6 +2,8 @@ import { DirectiveOptions } from 'vue';
 import { DirectiveBinding } from 'vue/types/options';
 import { IObserveElement, IKObserverOptions, observerManager, IObserveChildValue, getObserveValue } from '@kricsleo/observer';
 
+export * from '@kricsleo/observer';
+
 export interface IObserveChildBinding extends DirectiveBinding {
   value?: IObserveChildValue;
   oldValue?: IObserveChildValue;
