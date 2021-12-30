@@ -1,0 +1,44 @@
+{
+  "name": "@kricsleo/observer-react",
+  "version": "0.1.0",
+  "description": "easy to use intersection observer, adapted for react.",
+  "keywords": [
+    "IntersectionObserver",
+    "vue",
+    "react",
+    "js",
+    "lazy-load",
+    "exposure"
+  ],
+  "private": false,
+  "author": "kricleo",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/kricsleo/observer/issues"
+  },
+  "homepage": "https://github.com/kricsleo/observer#readme",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kricsleo/observer.git"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "tslib": "^2.3.1",
+    "typescript": "~4.1.5"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "dependencies": {
+    "@kricsleo/observer": "^0.1.3"
+  }
+}
