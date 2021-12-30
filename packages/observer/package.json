@@ -1,6 +1,6 @@
 {
   "name": "@kricsleo/observer",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "easy to use intersection observer",
   "keywords": [
     "IntersectionObserver",
