@@ -37,5 +37,6 @@
   },
   "dependencies": {
     "@kricsleo/observer": "^0.1.4"
-  }
+  },
+  "gitHead": "7f29d385a53d3831002c5062b81f9c7563e946d2"
 }
