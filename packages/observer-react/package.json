@@ -1,6 +1,6 @@
 {
   "name": "@kricsleo/observer-react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "easy to use intersection observer, adapted for react.",
   "keywords": [
     "IntersectionObserver",
@@ -39,7 +39,7 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@kricsleo/observer": "^0.1.4"
+    "@kricsleo/observer": "^0.1.5"
   },
   "gitHead": "7f29d385a53d3831002c5062b81f9c7563e946d2"
 }
