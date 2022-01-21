@@ -79,7 +79,7 @@ export function getObserveValue(value?: IObserveChildValue): IObserveValue {
     case 'Function': return { active: value as IObserveFn };
     case 'Object': return value as IObserveValue;
     default: {
-      console.warn(`child must receive a function or an object, but got '${value}'`);
+      console.warn(`Child must receive a function or an object, but got '${value}'`);
       return {};
     }
   }
@@ -90,7 +90,7 @@ export function checkObserveCallback(value?: IObserveChildValue) {
   const observeValue = getObserveValue(value);
   const { active, enter, leave } = observeValue;
   if(!active && !enter && !leave) {
-    console.warn(`child missing all callbacks: 'active' 'enter' 'leave', so element won't be observered. `);
+    console.warn(`Child missing all callbacks: 'active' 'enter' 'leave', so element won't be observered. `);
     return false;
   }
   return true;
@@ -169,7 +169,7 @@ export const observerManager = {
   // 注册监测器
   registerObserver(key: string, options?: IKObserverOptions) {
     if(!key) {
-      console.error('please provide observer key.');
+      console.error('Please provide observer key.');
       return;
     }
     const observer = new KObserver((entries, observer) => entries.forEach(entry => {
@@ -179,7 +179,7 @@ export const observerManager = {
         return;
       }
       const { root } = observer.observer;
-      !checkChild(el, root) && console.warn('element is not child of target.', el, root);
+      !checkChild(el, root) && console.warn('Element is not child of target.', el, root);
       if(entry.isIntersecting) {
         observerManager.enter(key, el, { observer, entry, key });
       } else if (observeData.entered) {
