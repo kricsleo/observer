@@ -174,9 +174,12 @@ export const observerManager = {
     }
     const observer = new KObserver((entries, observer) => entries.forEach(entry => {
       const el = entry.target as IObserveElement;
+      const observeData = el.__observeData?.[key];
+      if(!observeData) {
+        return;
+      }
       const { root } = observer.observer;
       !checkChild(el, root) && console.warn('element is not child of target.', el, root);
-      const observeData = el.__observeData![key];
       if(entry.isIntersecting) {
         observerManager.enter(key, el, { observer, entry, key });
       } else if (observeData.entered) {
