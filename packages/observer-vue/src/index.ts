@@ -1,8 +1,14 @@
 import { DirectiveOptions } from 'vue';
 import { DirectiveBinding } from 'vue/types/options';
-import { IObserveElement, IKObserverOptions, observerManager, IObserveChildValue, getObserveValue } from '@kricsleo/observer';
+import { IObserveElement, IKObserverOptions, observerManager, getObserveValue, IObserveValue as IObserveValueRaw, IObserveFn } from '@kricsleo/observer';
 
 export * from '@kricsleo/observer';
+
+export interface IObserveValue extends IObserveValueRaw {
+  key?: string;
+}
+
+export type IObserveChildValue = IObserveFn | IObserveValue
 
 export interface IObserveChildBinding extends DirectiveBinding {
   value?: IObserveChildValue;
@@ -31,8 +37,8 @@ export const observeChild: DirectiveOptions = {
     value && observerManager.observe(arg, el, value);
   },
   update(el: IObserveElement, { arg = '', oldArg = '', value, oldValue }: IObserveChildBinding) {
-    const observeValue = getObserveValue(value);
-    const preObserveValue = getObserveValue(oldValue);
+    const observeValue = getObserveValue(value) as IObserveValue;
+    const preObserveValue = getObserveValue(oldValue) as IObserveValue;
     if(arg !== oldArg || observeValue.key !== preObserveValue.key) {
       observerManager.unobserve(oldArg, el);
       observerManager.observe(arg, el, observeValue);
