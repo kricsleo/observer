@@ -32,10 +32,6 @@ export type IObserveFn = (el: IObserveElement, value: IObserveCallbackValue) => 
 /** 被检测元素配置 */
 export type IObserveValue = {
   /**
-  * 元素检测唯一key, 更换key可以重新检测
-  */
-  key?: string | number;
-  /**
   * 完成检测回调
   */
   active?: IObserveFn;
@@ -256,7 +252,7 @@ export const observerManager = {
   // 监测子元素
   observe(key: string, el: IObserveElement, value: IObserveChildValue) {
     const observeValue = getObserveValue(value);
-    if(!checkObserveCallback(observeValue) || !el) {
+    if(!checkObserveCallback(observeValue) || !isElement(el)) {
       return;
     }
     el.__observeData = el.__observeData || {};
@@ -266,7 +262,7 @@ export const observerManager = {
   },
   // 取消监测子元素
   unobserve(key: string, el: IObserveElement) {
-    if(!el) {
+    if(!isElement(el)) {
       return;
     }
     observerManager.getObserver(key)?.unobserve(el);
@@ -325,4 +321,8 @@ export const observerManager = {
       delete this.__listenerMap.documentVisibility;
     }
   }
+}
+
+function isElement(el?: any) {
+  return el?.nodeType === Node.ELEMENT_NODE
 }

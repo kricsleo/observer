@@ -195,11 +195,6 @@ export type IObserveFn = (el: IObserveElement, value: IObserveCallbackValue) => 
  */
 export type IObserveValue = IObserveFn | {
   /**
-  * 元素检测唯一key, 更换key可以重新检测
-  * (通常你只会在一些比较极端的场景用到这个参数)
-  */
-  key?: string | number;
-  /**
   * 完成检测回调
   */
   active?: IObserveFn;
