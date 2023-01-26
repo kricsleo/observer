@@ -7,7 +7,7 @@ An Easy and lightweight(1.7kb after GZipped) lib to use [`InterserctionObserver`
 - Full TS support
 - Pure without any dependency
 - Lightweight, 1.7kb after GZipped
-- Support vanilla JS, React, Vue
+- Support vanilla JS, React, Vue2
 
 ## Usage
 
@@ -63,7 +63,7 @@ useObserverRoot('key1', rootOptions);
 useObserver('key1', childEl, childOptions);
 ```
 
-#### Vue
+#### Vue2
 
 ##### Use it by Vue.directive
 
@@ -71,8 +71,8 @@ A shortcut is provided to use with `Vue.directive`.
 
 ```vue
 <template>
-   <section v-observe.key1:root>
-     <div v-observe.key1="active"></div>
+   <section v-observe:key1.root>
+     <div v-observe:key1="active"></div>
    </section>
 </template>
 
@@ -95,16 +95,16 @@ Or a more complex usage.
 
 ```vue
 <template>
-   <section v-observe.key1:root>
+   <section v-observe:key1.root>
      <section
-       v-observe.key1="active1"
-       v-observe.key2:root
-       v-observe.key3:root="{threshold: 0.8, rootMargin: '10px 10px 10px 10px', root: null, timeout: 1500, useVisibility: true}"
+       v-observe:key1="active1"
+       v-observe:key2.root
+       v-observe:key3.root="{threshold: 0.8, rootMargin: '10px 10px 10px 10px', root: null, timeout: 1500, useVisibility: true}"
      >
        <div
-         v-observe.key1="active2"
-         v-observe.key2="active3"
-         v-observe.key3="{enter, leave, active: active4}"
+         v-observe:key1="active2"
+         v-observe:key2="active3"
+         v-observe:key3="{enter, leave, active: active4}"
        ></div>
      </section>
    </section>
