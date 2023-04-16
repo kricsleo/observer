@@ -43,12 +43,12 @@ import { observerManager } from '@kricsleo/observer'
 
 // register an observer with an unified key
 // or with custom options
-// observerManager.registerObserver(key: string, options?: RootOptions): Observer;
-observerManager.registerObserver('key', rootOptions);
+// observerManager.registerObserver(key: string, options?: IKObserverOptions | undefined): KObserver | undefined;
+observerManager.registerObserver('key', observerOptions);
 
 // observe element with the registered observer
-// observerManager.observe(key: string, el: Child, value: ChildOptions): void;
-observerManager.observe('key', el, childOptions);
+// observerManager.observe(key: string, el: IObserveElement, value: IObserveChildValue): void;
+observerManager.observe('key', el, obserserChildOptions);
 ```
 
 #### React
@@ -167,7 +167,7 @@ Or a more complex usage.
 /**
  * Options for registering observer.
  */
-export interface RootOptions {
+export interface IKObserverOptions {
   /**
    * Same with IntersectionObserver root.
    * When used with Vue.directive, the default is the Element that mounts the directive
@@ -188,17 +188,17 @@ export interface RootOptions {
    */
   threshold?: number;
   /**
-   * Minimal exposure time, then 'active' will be triggerred.
-   *
-   * @default 0
-   */
-  timeout?: number;
-  /**
    * If reponse to page visibility-change(By listening to 'visibilitychange').
    *
    * @default false
    */
   useVisibility?: boolean;
+  /**
+   * Minimal exposure time, then 'active' will be triggerred.
+   *
+   * @default 0
+   */
+  timeout?: number;
 }
 ```
 
@@ -207,29 +207,34 @@ export interface RootOptions {
  * Callback when observed(active | enter | leave).
  * Return `false` means no longer observe it.
  */
-export type ChildOptionsFn = (el: Child, value: CallbackValue) => void | false;
+export type IObserveFn = (el: IObserveElement, value: IObserveCallbackValue) => void | false;
 
-/** Options for multiple callback functions. */
-export type ChildOptionsObj = {
+/**
+ * Options for been observed.
+ * When a single funciton is received, it's equal to 'active' callback.
+ */
+export type IObserveValue = IObserveFn | {
   /**
-  * Triggered when `active`(between `enter` and `leave`).
+  * Callback for active, meet the 'timeout' time.
   */
-  active?: ChildOptionsFn;
+  active?: IObserveFn;
   /**
-  * Triggered when `enter`(threshold has been met).
+  * Callback for entering 'root' view.
   */
-  enter?: ChildOptionsFn;
+  enter?: IObserveFn;
   /**
-  * Triggered when `leave`(threshold is no longer met).
+  * Callback for leaving 'root' view.
   */
-  leave?: ChildOptionsFn;
+  leave?: IObserveFn;
 }
 
-/** Callback value */
-export interface CallbackValue {
+/**
+ * Callback value.
+ */
+export interface IObserveCallbackValue {
   key: string;
-  observer: Observer;
-  entry?: IntersectionObserverEntry;
+  observer: KObserver;
+  entry: IntersectionObserverEntry;
 }
 ```
 

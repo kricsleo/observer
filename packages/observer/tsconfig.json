@@ -1,9 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist"
-  },
-  "files": [
-    "src/index.ts"
-  ]
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["esnext", "DOM"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
+  }
 }

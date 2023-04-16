@@ -46,7 +46,7 @@ import Vue from "vue";
 // @ts-ignore
 import WaterfallFlow from '@kricsleo/waterfall-flow';
 import '@kricsleo/waterfall-flow/dist/WaterfallFlow.css';
-import { observerManager, IObserveCallbackValue } from "../../../packages/observer-vue";
+import { observerManager, type IObserveCallbackValue } from "@kricsleo/observer-vue";
 
 function getRandom() {
   return { key:Math.random(), name: Math.random().toFixed(3) };
